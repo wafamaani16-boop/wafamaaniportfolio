@@ -392,9 +392,32 @@
     padding: 8px 20px 16px;
   }
   .nav-links.is-open a{ padding: 12px 0; width: 100%; }
+
+  /* ---------- custom cursor ---------- */
+  body.has-custom-cursor, body.has-custom-cursor a, body.has-custom-cursor button{ cursor: none; }
+  .cursor-dot, .cursor-ring{
+    position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
+    border-radius: 50%; transform: translate(-50%, -50%); will-change: transform;
+  }
+  .cursor-dot{ width: 6px; height: 6px; background: var(--copper); opacity: 0; transition: opacity 0.2s ease; }
+  .cursor-ring{
+    width: 34px; height: 34px; border: 1px solid var(--copper-dim); opacity: 0;
+    transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, opacity 0.2s ease;
+  }
+  .cursor-dot.is-active, .cursor-ring.is-active{ opacity: 1; }
+  .cursor-ring.is-hover{ width: 56px; height: 56px; border-color: var(--teal); background: rgba(79,184,168,0.08); }
+
+  /* card collaborators line */
+  .card .card-collab{
+    margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line);
+    font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; color: var(--ink-faint);
+  }
 </style>
 </head>
 <body>
+
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+<div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
 
 <nav class="site-nav">
   <div class="nav-inner">
@@ -468,10 +491,11 @@
       <p class="org">AEE HTU Student Chapter</p>
       <ul>
         <li>Led AEE HTU to the Career Catalyst Achievement Award at RENEW MENA 2025 (Cairo), competing against professional organizations; the chapter was named an official RENEW MENA Partner.</li>
-        <li>Organized a panel on Jordan's 3rd National Energy Efficiency Action Plan (NEEAP#3), under the National Technology Parade 2025, bringing together five leading women in energy from the Ministry of Energy, EMRC, and NERC.</li>
-        <li>Ran a 3-day "Innovative Horizons in Solar Energy" workshop series — covering PV systems and VR/AR, a CubeSat space-applications session, and an industry visit to HANANIA Energy.</li>
+        <li>Organized and emceed a panel on Jordan's 3rd National Energy Efficiency Action Plan (NEEAP#3), under the National Technology Parade 2025, bringing together five leading women in energy: Eng. Lina Mubaideen (Ministry of Energy and Mineral Resources), Eng. Amaal Al-Khatatbeh (EMRC), Eng. Suhair Al Mhairat (CWEEL Jordan), Eng. Sawsan Bawaresh (NERC), and Eng. Maha Hyari (German Energy Academy in Jordan).</li>
+        <li>Ran a 3-day "Innovative Horizons in Solar Energy" workshop series: PV systems and VR/AR with Eng. Ala'a Mannoun (Founder, Taqa Space); a CubeSat space-applications session with the Al-Rhim Sat team under Dr. Firas Jarrar; and an industry visit to HANANIA Energy.</li>
         <li>Organized the BRACkA event in collaboration with the Royal Scientific Society and HTU's Office of Industry Partnership.</li>
-        <li>Represented AEE HTU at the German Energy Academy's "She Leads" workshop, translating challenges facing women in energy into policy-aligned tools.</li>
+        <li>Represented AEE HTU alongside chapter President Sarah Sharayah at the German Energy Academy's "She Leads" workshop — hosted by EDAMA (Energy, Water & Environment) under the Jordanian-German Energy Partnership — translating challenges facing women in energy into policy-aligned tools.</li>
+        <li>Ranked #3 Top Female Creator in the Energy Industry in Jordan by Favikon, recognizing sustained content and thought leadership in energy and sustainability.</li>
       </ul>
     </div>
 
@@ -483,7 +507,7 @@
       <p class="org">AEE HTU Student Chapter</p>
       <ul>
         <li>Built a multi-platform content strategy across Instagram, LinkedIn, and Facebook that grew event attendance and member engagement.</li>
-        <li>Contributed to the chapter's Best International Student Chapter Newsletter award — AEE HTU's fifth win overall.</li>
+        <li>Contributed to the chapter's Best International Student Chapter Newsletter award — AEE HTU's fifth win overall — as part of the editorial team: Sarah Sharayah (President), Jameel Abu Zaina (Media Manager), Salma Mohammad Ali (Event Manager), Wesam Khasabah (Treasurer), Anaam Zamil (Public Relations), and Raya Saudi (Secretary), under advisor Eng. Samer Zawaydeh.</li>
       </ul>
     </div>
   </section>
@@ -503,12 +527,14 @@
       <div class="card">
         <p class="card-eyebrow">HTU PROJECT EXPO</p>
         <h3>WavePods</h3>
-        <p>A triboelectric nanogenerator (TENG) concept that converts ambient sound into charging energy for earbuds, developed for the Professional Engineering Management course.</p>
+        <p>A triboelectric nanogenerator (TENG) concept that eliminates traditional charging needs for earbuds by converting ambient sound into a sustainable energy source, developed for the Professional Engineering Management course.</p>
+        <p class="card-collab">Supervised by Eng. Mohammad Aburumman and Eng. Omar Aldabbas, under Dr. Tarek Tutunji, HTU.</p>
       </div>
       <div class="card">
         <p class="card-eyebrow">GREEN COMMUNITY CONTEST</p>
         <h3>Microalgae Wastewater Treatment</h3>
-        <p>Proposed a microalgae-based approach to treating industrial wastewater ponds affecting nearby communities, developed with HTU's Green Community initiative.</p>
+        <p>Proposed a microalgae-based approach to treating industrial wastewater ponds affecting nearby communities, aiming to reduce serious health impacts like respiratory illness, developed with HTU's Green Community initiative.</p>
+        <p class="card-collab">With teammates Rayan Al-Dabbas and Rama Alnami.</p>
       </div>
       <div class="card">
         <p class="card-eyebrow">CAPSTONE · FEB 2026 – JAN 2027 (EXPECTED)</p>
@@ -551,7 +577,7 @@
       </div>
       <div class="achieve-item">
         <span class="a-year">2024</span>
-        <div><div class="a-title">Selected Participant, Youth Climate Innovation Programme (YCI Lab)</div><div class="a-sub">UN Climate Technology Centre &amp; Network — 1 of 80 chosen from 250+ MENA &amp; Latin America applicants</div></div>
+        <div><div class="a-title">Selected Participant, Youth Climate Innovation Programme (YCI Lab)</div><div class="a-sub">UN Climate Technology Centre &amp; Network — 1 of 80 chosen (17 teams) from 250+ MENA &amp; Latin America applicants · Nov 30 – Dec 6, 2024</div></div>
       </div>
       <div class="achieve-item">
         <span class="a-year">2024</span>
@@ -569,11 +595,11 @@
     <div class="vol-grid">
       <div class="vol-item">
         <h3>57 hours of community service — Ma'an Volunteering Team, Mind Lab, The Children's Museum Jordan &amp; Run Jordan</h3>
-        <p>2023 – 2024 · Recognized with a certificate of appreciation from Al Hussein Technical University (HTU).</p>
+        <p>2023 – 2024 · Recognized with a certificate of appreciation from Al Hussein Technical University (HTU), with thanks to Dr. Ismael Al-Hinti and Dr. Mariam Bilto for their support.</p>
       </div>
       <div class="vol-item">
         <h3>Co-organizer, RCOY MENA — Regional Conference of Youth</h3>
-        <p>Sep 2024 · Represented HTU, engaging youth delegates from across the MENA region on climate resilience, security, and action in conflict-affected communities.</p>
+        <p>Sep 2024 · Themed "Building Climate Resilience, Security and Peace: Empowering the Region's Youth to Take Climate Action in Conflict and Disaster-Affected Communities." Represented HTU, engaging youth delegates from across the MENA region — including Iraq, Morocco, Tunisia, Egypt, Yemen, Palestine, Lebanon, Algeria, Syria, Saudi Arabia, Sudan, Somalia, Qatar, and the UAE.</p>
       </div>
     </div>
   </section>
@@ -694,6 +720,66 @@
   } else {
     revealEls.forEach(function(el){ el.classList.add('is-visible'); });
     nodeEls.forEach(function(el){ el.classList.add('is-active'); });
+  }
+
+  /* ---------- custom cursor ---------- */
+  if(enableRich){
+    document.body.classList.add('has-custom-cursor');
+    var dot = document.getElementById('cursorDot');
+    var ring = document.getElementById('cursorRing');
+    var dx = 0, dy = 0, rx = 0, ry = 0, shown = false;
+
+    window.addEventListener('mousemove', function(e){
+      dx = e.clientX; dy = e.clientY;
+      if(!shown){
+        dot.classList.add('is-active');
+        ring.classList.add('is-active');
+        shown = true;
+        rx = dx; ry = dy;
+      }
+    });
+
+    function cursorRaf(){
+      rx += (dx - rx) * 0.2;
+      ry += (dy - ry) * 0.2;
+      dot.style.transform = 'translate(' + dx + 'px,' + dy + 'px) translate(-50%,-50%)';
+      ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px) translate(-50%,-50%)';
+      requestAnimationFrame(cursorRaf);
+    }
+    requestAnimationFrame(cursorRaf);
+
+    var hoverables = document.querySelectorAll('a, button, .card, .achieve-item');
+    hoverables.forEach(function(el){
+      el.addEventListener('mouseenter', function(){ ring.classList.add('is-hover'); });
+      el.addEventListener('mouseleave', function(){ ring.classList.remove('is-hover'); });
+    });
+  }
+
+  /* ---------- magnetic buttons ---------- */
+  if(enableRich){
+    document.querySelectorAll('.btn, .nav-cta').forEach(function(btn){
+      btn.addEventListener('mousemove', function(e){
+        var r = btn.getBoundingClientRect();
+        var mx = e.clientX - (r.left + r.width/2);
+        var my = e.clientY - (r.top + r.height/2);
+        btn.style.transform = 'translate(' + (mx*0.25) + 'px,' + (my*0.35) + 'px)';
+      });
+      btn.addEventListener('mouseleave', function(){ btn.style.transform = 'translate(0,0)'; });
+    });
+  }
+
+  /* ---------- card tilt ---------- */
+  if(enableRich){
+    document.querySelectorAll('.card').forEach(function(card){
+      card.style.transformStyle = 'preserve-3d';
+      card.addEventListener('mousemove', function(e){
+        var r = card.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5;
+        var py = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transform = 'perspective(700px) rotateX(' + (py * -6) + 'deg) rotateY(' + (px * 6) + 'deg) translateZ(0)';
+      });
+      card.addEventListener('mouseleave', function(){ card.style.transform = 'perspective(700px) rotateX(0) rotateY(0)'; });
+    });
   }
 
   /* ---------- achievements spotlight ---------- */
